@@ -1,10 +1,8 @@
 package ru.ifmo.ctddev.FSSARecSys.calculators.mfextraction.clustermf.landmarks;
 
+import ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering.metric.ClusterMetric;
 import ru.ifmo.ctddev.FSSARecSys.alternative.internal.Clusterisation;
-import ru.ifmo.ctddev.FSSARecSys.calculators.mfextraction.MetaFeatureExtractor;
-import ru.ifmo.ctddev.FSSARecSys.db.DataSet;
 import ru.ifmo.ctddev.FSSARecSys.db.internal.MLAlgorithm;
-import ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering.metrics.ClusterMetric;
 import weka.clusterers.AbstractClusterer;
 import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.Clusterer;
@@ -12,6 +10,8 @@ import weka.clusterers.SimpleKMeans;
 import weka.core.Instances;
 
 import java.util.ArrayList;
+
+import mfextraction.MetaFeatureExtractor;
 
 /**
  * Created by sergey on 02.03.16.
@@ -32,7 +32,7 @@ public class LandmarkMF extends MetaFeatureExtractor {
     }
 
     @Override
-    public double extract(DataSet dataSet) throws Exception {
+    public double extract(Instances instances) throws Exception {
 //        Instances data = dataSet.getInstances();
 //
 //        Clusterer clusterer = null;

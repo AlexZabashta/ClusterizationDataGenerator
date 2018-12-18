@@ -1,51 +1,25 @@
-package ru.ifmo.ctddev.FSSARecSys.calculators.mfextraction.clustermf.landmarks;
+package mfextraction.landmark;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import mfextraction.MetaFeatureExtractor;
-import utils.ClusterCentroid;
-import weka.clusterers.SimpleKMeans;
+import mfextraction.Landmark;
 import weka.core.EuclideanDistance;
 import weka.core.Instance;
 import weka.core.Instances;
 
 /**
- * Created by sergey on 24.02.16.
+ * Created by sergey on 01.03.16.
  */
-public class KMDBLandmark extends MetaFeatureExtractor {
+public class KMDunn extends Landmark {
     @Override
     public String getName() {
-        return "KM-DB-LandMark";
+        return "KM-Dunn-LandMark";
     }
 
+  
+
     @Override
-    public double extract(Instances instances) throws Exception {
-        SimpleKMeans clusterer = new SimpleKMeans();
-        clusterer.setOptions(weka.core.Utils.splitOptions("\"-N 5 -A \\\"weka.core.EuclideanDistance -R first-last\\\" -I 500 -S 10\", \"clusterisation\""));
-
-        clusterer.buildClusterer(instances);
-
-        int numOfClusters = clusterer.getNumClusters();
-
-        ClusterCentroid ct = new ClusterCentroid();
-        Instance datasetCentroid = ct.findCentroid(0, instances);
-        Instances centroids = clusterer.getClusterCentroids();
-
-        Instances unitedClusters = new Instances(instances, 0);
-        ArrayList<Instances> clusters = new ArrayList<>(numOfClusters);
-
-        for (int i = 0; i < numOfClusters; i++) {
-            clusters.add(new Instances(instances, 0));
-        }
-
-        for (Instance instance : instances) {
-            int c = clusterer.clusterInstance(instance);
-            if (0 <= c && c < numOfClusters) {
-                clusters.get(c).add(instance);
-                unitedClusters.add(instance);
-            }
-        }
-
+    public double evaluate(int numOfClusters, Instances unitedClusters, Instance datasetCentroid, List<Instances> clusters, Instances centroids) throws Exception {
         EuclideanDistance allInstancedDist = new EuclideanDistance(unitedClusters);
 
         double maxTotal = Double.NEGATIVE_INFINITY;
@@ -86,6 +60,5 @@ public class KMDBLandmark extends MetaFeatureExtractor {
             minIntraclusterDistance = Double.min(minIntraclusterDistance, minLocalDistance);
         }
         return minIntraclusterDistance / maxTotal;
-
     }
 }

@@ -7,7 +7,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ru.ifmo.ctddev.FSSARecSys.calculators.mfextraction.distances.*;
+
+import mfextraction.distances.*;
+import ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering.metric.ClustererResult;
 import ru.ifmo.ctddev.FSSARecSys.db.internal.Dataset;
 import ru.ifmo.ctddev.FSSARecSys.db.internal.MLAlgorithm;
 import ru.ifmo.ctddev.FSSARecSys.utils.DrawPicture;

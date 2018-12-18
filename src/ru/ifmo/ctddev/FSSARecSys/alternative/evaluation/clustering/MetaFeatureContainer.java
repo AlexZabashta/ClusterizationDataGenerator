@@ -1,13 +1,14 @@
 package ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering;
 
-import ru.ifmo.ctddev.FSSARecSys.calculators.mfextraction.MetaFeatureExtractor;
-import ru.ifmo.ctddev.FSSARecSys.calculators.mfextraction.distances.*;
 import ru.ifmo.ctddev.FSSARecSys.db.internal.Dataset;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+
+import mfextraction.MetaFeatureExtractor;
+import mfextraction.distances.*;
 
 /**
  * Created by sergey on 04.05.16.

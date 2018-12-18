@@ -1,5 +1,6 @@
 package ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering;
 
+import ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering.metric.ClustererResult;
 import ru.ifmo.ctddev.FSSARecSys.db.internal.Dataset;
 import ru.ifmo.ctddev.FSSARecSys.db.internal.MLAlgorithm;
 import weka.clusterers.AbstractClusterer;

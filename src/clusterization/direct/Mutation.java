@@ -61,7 +61,7 @@ public class Mutation implements MutationOperator<DataSetSolution> {
         Dataset dataset = new Dataset(data, extractor);
 
         for (int rep = 0; rep < 10; rep++) {
-            Mutation mutation = new Mutation(1, 2, 1, 2, extractor, random.nextLong());
+            Mutation mutation = new Mutation(7, 7, 7,7, extractor, random.nextLong());
             System.out.println(Arrays.toString(dataset.metaFeatures()));
             ArrayUtils.print(dataset.data());
             dataset = mutation.execute(dataset);

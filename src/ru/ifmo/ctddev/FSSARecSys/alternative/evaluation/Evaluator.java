@@ -2,7 +2,7 @@ package ru.ifmo.ctddev.FSSARecSys.alternative.evaluation;
 
 import ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.classification.*;
 import ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering.ClustererEvaluator;
-import ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering.ClustererResult;
+import ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering.metric.ClustererResult;
 import ru.ifmo.ctddev.FSSARecSys.alternative.internal.FSSClustering.FSSClusteringAlgorithm;
 import ru.ifmo.ctddev.FSSARecSys.alternative.internal.FSSClustering.LaplasianScore;
 import ru.ifmo.ctddev.FSSARecSys.alternative.internal.FSSClustering.SPEC;

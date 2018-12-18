@@ -1,5 +1,6 @@
 package ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering;
 
+import ru.ifmo.ctddev.FSSARecSys.alternative.evaluation.clustering.metric.ClustererResult;
 import ru.ifmo.ctddev.FSSARecSys.alternative.internal.Clusterisation;
 import ru.ifmo.ctddev.FSSARecSys.utils.DrawPicture;
 import ru.ifmo.ctddev.FSSARecSys.utils.PictureManagement;
