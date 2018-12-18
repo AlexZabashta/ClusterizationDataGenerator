@@ -3,6 +3,8 @@ package mfextraction;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uma.jmetal.util.point.util.EuclideanDistance;
+
 import utils.ClusterCentroid;
 import weka.clusterers.SimpleKMeans;
 import weka.core.Instance;
@@ -13,7 +15,10 @@ public abstract class Landmark extends MetaFeatureExtractor {
     @Override
     public double extract(Instances instances) throws Exception {
         SimpleKMeans clusterer = new SimpleKMeans();
-        clusterer.setOptions(weka.core.Utils.splitOptions("\"-N 5 -A \\\"weka.core.EuclideanDistance -R first-last\\\" -I 500 -S 10\", \"clusterisation\""));
+
+        clusterer.setNumClusters(5);
+        clusterer.setDistanceFunction(new weka.core.EuclideanDistance());
+        clusterer.setMaxIterations(500);
 
         clusterer.buildClusterer(instances);
 

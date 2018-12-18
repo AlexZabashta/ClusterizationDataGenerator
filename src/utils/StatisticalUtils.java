@@ -73,7 +73,12 @@ public class StatisticalUtils {
     }
 
     public static double linearCorrelationCoefficient(double covariance, double variance1, double variance2) {
-        return covariance / Math.sqrt(variance1 * variance2);
+        double norm = Math.sqrt(variance1 * variance2);
+        if (norm > 1e-9) {
+            return covariance / norm;
+        } else {
+            return 0;
+        }
     }
 
     public static double linearCorrelationCoefficient(double values1[], double values2[], double mean1, double mean2, double variance1, double variance2) {

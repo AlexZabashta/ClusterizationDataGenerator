@@ -25,7 +25,9 @@ public class MeanSkewness extends MetaFeatureExtractor {
             double[] values = instances.attributeToDoubleArray(i);
             double mean = StatisticalUtils.mean(values);
             double variance = StatisticalUtils.variance(values, mean);
-            sum += StatisticalUtils.centralMoment(values, 3, mean) / Math.pow(variance, 1.5);
+            if (variance > 1e-9) {
+                sum += StatisticalUtils.centralMoment(values, 3, mean) / Math.pow(variance, 1.5);
+            }
         }
         return sum / count;
     }

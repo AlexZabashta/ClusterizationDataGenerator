@@ -25,7 +25,9 @@ public class MeanKurtosis extends MetaFeatureExtractor {
             double[] values = instances.attributeToDoubleArray(i);
             double mean = StatisticalUtils.mean(values);
             double variance = StatisticalUtils.variance(values, mean);
-            sum += StatisticalUtils.centralMoment(values, 4, mean) / Math.pow(variance, 2);
+            if (variance > 1e-9) {
+                sum += StatisticalUtils.centralMoment(values, 4, mean) / Math.pow(variance, 2);
+            }
         }
         return sum / count;
     }
