@@ -6,7 +6,8 @@ public class StatUtils {
 
     public static double[] mean(int n, int m, double[][] data) {
         double[] mu = new double[m];
-        for (double[] vector : data) {
+        for (int i = 0; i < n; i++) {
+            double[] vector = data[i];
             for (int j = 0; j < m; j++) {
                 mu[j] += vector[j];
             }

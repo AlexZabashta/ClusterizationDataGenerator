@@ -1,19 +1,44 @@
 package dsgenerators.hyparam;
 
+import java.util.List;
+import java.util.Random;
+import java.util.function.ToDoubleFunction;
+
 import org.uma.jmetal.problem.DoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
 import org.uma.jmetal.solution.impl.DefaultDoubleSolution;
 
+import clusterization.Dataset;
+import clusterization.MetaFeaturesExtractor;
 import dsgenerators.EndSearch;
 import dsgenerators.ErrorFunction;
-import features_inversion.classification.dataset.BinDataset;
 
 public class PGProblem implements DoubleProblem {
 
-    final int a, p, n;
-    final ErrorFunction error;
+    private static final long serialVersionUID = 1L;
+    final ToDoubleFunction<Dataset> errorFunction;
+    final List<Dataset> datasets;
+    final Random random = new Random();
+    final int numFeatures, numObjects;
+    public final MetaFeaturesExtractor extractor;
 
-    final GeneratorBuilder g;
+    public SimpleProblem(int numObjects, int numFeatures, ToDoubleFunction<Dataset> errorFunction, List<Dataset> datasets, MetaFeaturesExtractor extractor) {
+        this.numObjects = numObjects;
+        this.numFeatures = numFeatures;
+        this.errorFunction = errorFunction;
+        this.datasets = datasets;
+        this.extractor = extractor;
+    }
+
+    final static double lowerBound = -10;
+    final static double upperBound = +10;
+
+    private static final long serialVersionUID = 1L;
+    final ToDoubleFunction<Dataset> errorFunction;
+    final List<Dataset> datasets;
+    final Random random = new Random();
+    final int numFeatures, numObjects;
+    public final MetaFeaturesExtractor extractor;
 
     public PGProblem(int a, int p, int n, ErrorFunction error, GeneratorBuilder g) {
         this.error = error;

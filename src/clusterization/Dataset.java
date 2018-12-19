@@ -118,7 +118,11 @@ public class Dataset {
     }
 
     public double[] metaFeatures() {
-        return metaFeatures.clone();
+        if (metaFeatures == null) {
+            return null;
+        } else {
+            return metaFeatures.clone();
+        }
     }
 
     public double[][] data() {

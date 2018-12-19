@@ -24,16 +24,16 @@ import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.DoubleSolution;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
+import clusterization.direct.GDSProblem;
+import clusterization.vect.SimpleProblem;
 import dsgenerators.direct.BinDataSetSolution;
 import dsgenerators.direct.Crossover;
-import dsgenerators.direct.GDSProblem;
 import dsgenerators.direct.Mutation;
 import dsgenerators.hyparam.BayesNetGen;
 import dsgenerators.hyparam.GMMGen;
 import dsgenerators.hyparam.PGProblem;
 import dsgenerators.hyparam.RBFGen;
 import dsgenerators.hyparam.RDG1Gen;
-import dsgenerators.vect.SimpleProblem;
 import features_inversion.classification.dataset.BinDataset;
 import misc.Experiment;
 

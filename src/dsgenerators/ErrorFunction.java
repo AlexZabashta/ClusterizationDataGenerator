@@ -1,12 +1,10 @@
 package dsgenerators;
 
-import features_inversion.classification.dataset.BinDataset;
+import java.util.function.ToDoubleFunction;
 
-public interface ErrorFunction {
+public interface ErrorFunction extends ToDoubleFunction<double[]> {
 
-    public double[] componentwise(BinDataset dataset) throws EndSearch;
-
-    public double aggregate(double[] vector);
+    public double error(double[] vector) throws EndSearch;
 
     public int length();
 

@@ -8,6 +8,7 @@ import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 import org.uma.jmetal.operator.CrossoverOperator;
 import org.uma.jmetal.operator.MutationOperator;
 
+import clusterization.direct.GDSProblem;
 import dsgenerators.DatasetGenerator;
 import dsgenerators.ErrorFunction;
 import features_inversion.classification.dataset.BinDataset;

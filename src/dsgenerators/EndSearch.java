@@ -1,5 +1,5 @@
 package dsgenerators;
 
-public class EndSearch extends Exception {
+public class EndSearch extends RuntimeException {
 
 }

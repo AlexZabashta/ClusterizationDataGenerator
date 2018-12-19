@@ -13,9 +13,9 @@ import org.uma.jmetal.problem.DoubleProblem;
 import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
 
+import clusterization.direct.GDSProblem;
 import dsgenerators.DatasetGenerator;
 import dsgenerators.ErrorFunction;
-import dsgenerators.direct.GDSProblem;
 import dsgenerators.hyparam.RDG1Gen;
 import features_inversion.classification.dataset.BinDataset;
 
