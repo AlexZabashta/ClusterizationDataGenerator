@@ -22,6 +22,14 @@ public class Mutation implements MutationOperator<DataSetSolution> {
         this(minNumObjects, maxNumObjects, minNumFeatures, maxNumFeatures, extractor, 0);
     }
 
+    public Mutation(int numObjects, int numFeatures, MetaFeaturesExtractor extractor) {
+        this(numObjects, numObjects, numFeatures, numFeatures, extractor, 0);
+    }
+
+    public Mutation(int numObjects, int numFeatures, MetaFeaturesExtractor extractor, long seed) {
+        this(numObjects, numObjects, numFeatures, numFeatures, extractor, seed);
+    }
+
     public Mutation(int minNumObjects, int maxNumObjects, int minNumFeatures, int maxNumFeatures, MetaFeaturesExtractor extractor, long seed) {
         this.extractor = extractor;
         this.seed = seed;
@@ -61,7 +69,7 @@ public class Mutation implements MutationOperator<DataSetSolution> {
         Dataset dataset = new Dataset(data, extractor);
 
         for (int rep = 0; rep < 10; rep++) {
-            Mutation mutation = new Mutation(7, 7, 7,7, extractor, random.nextLong());
+            Mutation mutation = new Mutation(7, 7, 7, 7, extractor, random.nextLong());
             System.out.println(Arrays.toString(dataset.metaFeatures()));
             ArrayUtils.print(dataset.data());
             dataset = mutation.execute(dataset);

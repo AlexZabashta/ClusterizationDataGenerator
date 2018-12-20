@@ -60,6 +60,11 @@ public class GMMProblem implements DoubleProblem {
         double[][] data = dataset.data();
         data = RelationsGenerator.changeNumFeatures(data, dataset.numFeatures, numFeatures, random);
         double[][] cov = StatUtils.covarianceMatrix(data.length, numFeatures, data);
+
+        for (int i = 0; i < numFeatures; i++) {
+            cov[i][i] += 1e-3;
+        }
+
         try {
             double[][] sqrt = MatrixUtils.sqrt(numFeatures, cov);
             for (int index = 0, i = 0; i < numFeatures; i++) {

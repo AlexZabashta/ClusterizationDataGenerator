@@ -1,4 +1,4 @@
-package utils;
+package exclude.dsgenerators;
 
 public class EndSearch extends RuntimeException {
 

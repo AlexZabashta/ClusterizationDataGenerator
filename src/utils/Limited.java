@@ -1,58 +1,34 @@
 package utils;
 
+import java.util.function.ToDoubleFunction;
+
 import clusterization.Dataset;
 
-public class Limited implements ErrorFunction {
+public class Limited implements ToDoubleFunction<Dataset> {
 
-    public final ErrorFunction function;
+    public final ToDoubleFunction<Dataset> function;
 
     public Dataset dataset = null;
     public double best = Double.POSITIVE_INFINITY;
     public final double[] log;
     public int qid = 0;
 
-    public Limited(ErrorFunction function, int limit) {
+    public Limited(ToDoubleFunction<Dataset> function, int limit) {
         this.function = function;
         log = new double[limit];
     }
 
     @Override
-    public double aggregate(double[] vector) {
-        return function.aggregate(vector);
-    }
-
-    @Override
-    public double[] componentwise(Dataset dataset) throws EndSearch {
+    public double applyAsDouble(Dataset dataset) {
         if (qid >= log.length) {
             throw new EndSearch();
         }
-
-        double[] vector = function.componentwise(dataset);
-
-        double value;
-        if (function.length() == 1) {
-            value = vector[0];
-        } else {
-            value = function.aggregate(vector);
-        }
-
+        double value = function.applyAsDouble(dataset);
         if (value < best) {
             best = value;
             this.dataset = dataset;
         }
-
         log[qid++] = value;
-
-        if (qid >= log.length) {
-            throw new EndSearch();
-        }
-
-        return vector;
+        return value;
     }
-
-    @Override
-    public int length() {
-        return function.length();
-    }
-
 }

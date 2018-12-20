@@ -11,6 +11,7 @@ import org.uma.jmetal.solution.impl.DefaultDoubleSolution;
 import clusterization.Dataset;
 import clusterization.MetaFeaturesExtractor;
 import clusterization.direct.RelationsGenerator;
+import utils.EndSearch;
 
 public class SimpleProblem implements DoubleProblem {
 
@@ -80,7 +81,14 @@ public class SimpleProblem implements DoubleProblem {
 
     @Override
     public void evaluate(DoubleSolution solution) {
-        solution.setObjective(0, errorFunction.applyAsDouble(build(solution)));
+        try {
+            solution.setObjective(0, errorFunction.applyAsDouble(build(solution)));
+        } catch (Exception e) {
+            if (e instanceof EndSearch) {
+                throw e;
+            }
+            solution.setObjective(0, 100);
+        }
     }
 
     @Override
