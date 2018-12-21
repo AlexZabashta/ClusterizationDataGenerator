@@ -54,17 +54,16 @@ public class CalcDists {
 
         Random random = new Random();
 
-        for (int rep1 = 0; rep1 < 10; rep1++) {
+        for (int rep1 = 0; rep1 < 5; rep1++) {
             int i = random.nextInt(numData);
 
             int j = i;
-            for (int rep2 = 0; rep2 < 10; rep2++) {
+            for (int rep2 = 0; rep2 < 5; rep2++) {
 
                 System.out.println(distance.distance(metaData[i], metaData[j]) + " " + distance.distance(metaData[j], metaData[i]));
 
                 j = random.nextInt(numData);
             }
-
         }
 
     }
