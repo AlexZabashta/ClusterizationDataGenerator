@@ -1,8 +1,8 @@
 package mfextraction.statistical;
 
+import mfextraction.CacheMF;
 import mfextraction.MetaFeatureExtractor;
 import utils.StatisticalUtils;
-import weka.core.Instances;
 
 /**
  * Created by warrior on 22.03.15.
@@ -17,18 +17,24 @@ public class MeanKurtosis extends MetaFeatureExtractor {
     }
 
     @Override
-    public double extract(Instances instances) {
-        int count = 0;
+    public double extract(CacheMF cache) {
+        double[][] attributeToDoubleArray = cache.attributeToDoubleArray();
+        final int count = attributeToDoubleArray.length;
+        if (count == 0) {
+            return 0;
+        }
+
         double sum = 0;
-        for (int i = 0; i < instances.numAttributes(); i++) {
-            count++;
-            double[] values = instances.attributeToDoubleArray(i);
+        for (int i = 0; i < count; i++) {
+            double[] values = attributeToDoubleArray[i];
             double mean = StatisticalUtils.mean(values);
             double variance = StatisticalUtils.variance(values, mean);
             if (variance > 1e-9) {
                 sum += StatisticalUtils.centralMoment(values, 4, mean) / Math.pow(variance, 2);
             }
         }
+
         return sum / count;
+
     }
 }

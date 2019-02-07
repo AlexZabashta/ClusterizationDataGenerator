@@ -1,9 +1,6 @@
 package mfextraction;
 
-import weka.core.Attribute;
-import weka.core.Instances;
-
-import java.util.Arrays;
+import clusterization.Dataset;
 
 public abstract class MetaFeatureExtractor {
     public abstract String getName();
@@ -12,6 +9,11 @@ public abstract class MetaFeatureExtractor {
      * This method should return the result of computing value for meta feature with name.
      * Any specific arguments?
      */
-    public abstract double extract(Instances instances) throws Exception;
+
+    public abstract double extract(CacheMF cache);
+
+    public double extract(Dataset dataset) {
+        return extract(new CacheMF(dataset));
+    }
 
 }

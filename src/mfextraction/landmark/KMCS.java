@@ -1,12 +1,8 @@
 package mfextraction.landmark;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import mfextraction.Landmark;
-import mfextraction.MetaFeatureExtractor;
-import utils.ClusterCentroid;
-import weka.clusterers.SimpleKMeans;
 import weka.core.EuclideanDistance;
 import weka.core.Instance;
 import weka.core.Instances;

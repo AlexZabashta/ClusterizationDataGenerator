@@ -20,6 +20,7 @@ public class KMCH extends Landmark {
     public double evaluate(int numOfClusters, Instances unitedClusters, Instance datasetCentroid, List<Instances> clusters, Instances centroids) throws Exception {
         double numerator = 0.0;
 
+        centroids = new Instances(centroids);
         centroids.add(datasetCentroid);
 
         EuclideanDistance e = new EuclideanDistance(centroids);

@@ -1,7 +1,7 @@
 package mfextraction.general;
 
+import mfextraction.CacheMF;
 import mfextraction.MetaFeatureExtractor;
-import weka.core.Instances;
 
 /**
  * Created by warrior on 22.03.15.
@@ -16,7 +16,7 @@ public class NumberOfInstances extends MetaFeatureExtractor {
     }
 
     @Override
-    public double extract(Instances instances) {
-        return instances.numInstances();
+    public double extract(CacheMF cache) {
+        return cache.dataset().numObjects;
     }
 }

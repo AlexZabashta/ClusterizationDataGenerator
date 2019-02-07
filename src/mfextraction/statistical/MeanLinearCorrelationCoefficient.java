@@ -1,8 +1,8 @@
 package mfextraction.statistical;
 
+import mfextraction.CacheMF;
 import mfextraction.MetaFeatureExtractor;
 import utils.StatisticalUtils;
-import weka.core.Instances;
 
 /**
  * Created by warrior on 22.03.15.
@@ -17,17 +17,25 @@ public class MeanLinearCorrelationCoefficient extends MetaFeatureExtractor {
     }
 
     @Override
-    public double extract(Instances instances) {
+    public double extract(CacheMF cache) {
         double sum = 0;
-        int count = 0;
-        for (int i = 0; i < instances.numAttributes(); i++) {
-            double[] values1 = instances.attributeToDoubleArray(i);
-            for (int j = i + 1; j < instances.numAttributes(); j++) {
-                double[] values2 = instances.attributeToDoubleArray(j);
+
+        double[][] attributeToDoubleArray = cache.attributeToDoubleArray();
+        final int length = attributeToDoubleArray.length;
+
+        if (length < 2) {
+            return 0;
+        }
+        final int count = length * (length - 1) / 2;
+
+        for (int i = 0; i < length; i++) {
+            double[] values1 = attributeToDoubleArray[i];
+            for (int j = 0; j < i; j++) {
+                double[] values2 = attributeToDoubleArray[j];
                 sum += StatisticalUtils.linearCorrelationCoefficient(values1, values2);
-                count++;
             }
         }
+
         return sum / count;
     }
 }

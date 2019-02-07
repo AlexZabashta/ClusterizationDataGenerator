@@ -1,6 +1,5 @@
 package mfextraction.landmark;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import mfextraction.Landmark;

@@ -1,10 +1,6 @@
 package mfextraction.distances;
 
-import weka.core.EuclideanDistance;
-import weka.core.Instances;
-
-import java.util.ArrayList;
-
+import mfextraction.CacheMF;
 import mfextraction.MetaFeatureExtractor;
 
 /**
@@ -26,34 +22,17 @@ public class MDDistances615 extends MetaFeatureExtractor {
     }
 
     @Override
-    public double extract(Instances instances) throws Exception {
-
-        EuclideanDistance d = new EuclideanDistance(instances);
-
-        double max = Double.MIN_VALUE;
-        double min = Double.MAX_VALUE;
-
-        ArrayList<Double> distances = new ArrayList<>();
-        for (int i = 0; i < instances.numInstances(); i++) {
-            for (int j = i + 1; j < instances.numInstances(); j++) {
-                double dist = d.distance(instances.instance(i), instances.instance(j));
-
-                max = max < dist ? dist : max;
-                min = min > dist ? dist : min;
-
-                distances.add(dist);
-            }
+    public double extract(CacheMF cache) {
+        double[] distances = cache.normalizedDistances();
+        if (distances.length == 0) {
+            return 100;
         }
-        double[] finalDist = new double[distances.size()];
-
         int ammount = 0;
-        for (int i = 0; i < finalDist.length; i++) {
-            finalDist[i] = distances.get(i) / (max - min);
-            if ((finalDist[i] >= low) && (finalDist[i] <= high)) {
+        for (int i = 0; i < distances.length; i++) {
+            if ((distances[i] >= low) && (distances[i] <= high)) {
                 ammount++;
             }
         }
-
-        return (100.0 * ((double) ammount / (double) finalDist.length));
+        return (100.0 * ((double) ammount / (double) distances.length));
     }
 }

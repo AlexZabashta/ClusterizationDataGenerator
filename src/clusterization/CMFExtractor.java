@@ -14,6 +14,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import mfextraction.CacheMF;
+import mfextraction.Landmark;
 import mfextraction.MetaFeatureExtractor;
 import mfextraction.distances.KurtosisD;
 import mfextraction.distances.MDDistances615;
@@ -34,6 +36,8 @@ import mfextraction.landmark.KMSil;
 import mfextraction.statistical.MeanKurtosis;
 import mfextraction.statistical.MeanLinearCorrelationCoefficient;
 import mfextraction.statistical.MeanSkewness;
+import utils.ClusterCentroid;
+import weka.clusterers.SimpleKMeans;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -140,14 +144,14 @@ public class CMFExtractor implements MetaFeaturesExtractor {
 
     @Override
     public double[] extract(Dataset dataset) {
-
         try {
-
             int n = lenght();
             double[] values = new double[n];
+            CacheMF cache = new CacheMF(dataset);
 
             for (int i = 0; i < n; i++) {
-                values[i] = extractors.get(i).extract(dataset.toInstances());
+                MetaFeatureExtractor extractor = extractors.get(i);
+                values[i] = extractor.extract(cache);
             }
 
             return values;

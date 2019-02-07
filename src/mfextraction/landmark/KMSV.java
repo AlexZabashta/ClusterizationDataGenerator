@@ -35,7 +35,7 @@ public class KMSV extends Landmark {
         double denominator = 0.0;
 
         for (int i = 0; i < numOfClusters; i++) {
-            Instances currCluster = clusters.get(i);
+            Instances currCluster = new Instances(clusters.get(i));
             double sum = 0.0;
             // double maxToCentrDist = Double.NEGATIVE_INFINITY;
 
