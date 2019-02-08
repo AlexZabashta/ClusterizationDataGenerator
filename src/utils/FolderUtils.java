@@ -3,8 +3,6 @@ package utils;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import javax.annotation.processing.FilerException;
-
 public class FolderUtils {
 
     public static final String DATA_FOLDER = "data";

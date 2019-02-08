@@ -1,9 +1,6 @@
 package utils;
 
-import java.util.Locale;
 import java.util.Random;
-
-import jMEF.PMatrix;
 
 public class MatrixUtils {
 

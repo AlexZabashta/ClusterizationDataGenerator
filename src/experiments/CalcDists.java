@@ -12,7 +12,6 @@ import utils.ArrayUtils;
 import utils.MahalanobisDistance;
 import utils.MatrixUtils;
 import utils.StatUtils;
-import utils.StatisticalUtils;
 
 public class CalcDists {
 

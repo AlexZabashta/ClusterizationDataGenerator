@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.function.ToDoubleFunction;
 
 import org.uma.jmetal.algorithm.Algorithm;
@@ -45,6 +43,7 @@ import clusterization.direct.Mutation;
 import clusterization.vect.GMMProblem;
 import clusterization.vect.SimpleProblem;
 import utils.ArrayUtils;
+import utils.BlockingThreadPoolExecutor;
 import utils.EndSearch;
 import utils.Experiment;
 import utils.FolderUtils;
@@ -57,6 +56,24 @@ import weka.core.Instances;
 public class RunExp {
 
     public static void main(String[] args) {
+
+        int paramLimit = 100;
+        int paramCores = 4;
+
+        try {
+            paramLimit = Integer.parseInt(args[0]);
+        } catch (Exception e) {
+            System.err.println("default limit = " + paramLimit);
+        }
+
+        try {
+            paramLimit = Integer.parseInt(args[1]);
+        } catch (Exception e) {
+            System.err.println("default cores = " + paramCores);
+        }
+        final int limit = paramLimit;
+        final int cores = paramCores;
+
         MetaFeaturesExtractor extractor = new CMFExtractor();
 
         int numMF = extractor.lenght();
@@ -101,9 +118,7 @@ public class RunExp {
 
         final int size = datasets.size();
 
-        final int limit = 1000;
-
-        ExecutorService threads = Executors.newFixedThreadPool(6);
+        ExecutorService threads = new BlockingThreadPoolExecutor(cores, false);
 
         for (int targetIndex = 0; targetIndex < size; targetIndex++) {
             List<Experiment> exp = new ArrayList<>();
@@ -149,7 +164,7 @@ public class RunExp {
 
                 try {
                     DoubleProblem problem = (DoubleProblem) prob;
-                    Algorithm<?> algorithm = new GDE3Builder(problem).setMaxIterations(10000000).setPopulationSize(32).build();
+                    Algorithm<?> algorithm = new GDE3Builder(problem).setMaxEvaluations(10000000).setPopulationSize(32).build();
                     probFunAlg.algorithm = algorithm;
 
                     exp.add(probFunAlg);
@@ -214,7 +229,7 @@ public class RunExp {
                 try {
                     GDSProblem problem = (GDSProblem) prob;
 
-                    Algorithm<?> algorithm = new NSGAIIBuilder<DataSetSolution>(problem, new Crossover(extractor), new Mutation(targetDataset.numObjects, targetDataset.numFeatures, extractor)).setMaxIterations(10000000).setPopulationSize(32).build();
+                    Algorithm<?> algorithm = new NSGAIIBuilder<DataSetSolution>(problem, new Crossover(extractor), new Mutation(targetDataset.numObjects, targetDataset.numFeatures, extractor)).setMaxEvaluations(10000000).setPopulationSize(32).build();
                     probFunAlg.algorithm = algorithm;
                     exp.add(probFunAlg);
 
@@ -223,7 +238,7 @@ public class RunExp {
 
                 try {
                     DoubleProblem problem = (DoubleProblem) prob;
-                    Algorithm<?> algorithm = new NSGAIIBuilder<DoubleSolution>(problem, new SBXCrossover(0.9, 20.0), new PolynomialMutation()).setMaxIterations(10000000).setPopulationSize(32).build();
+                    Algorithm<?> algorithm = new NSGAIIBuilder<DoubleSolution>(problem, new SBXCrossover(0.9, 20.0), new PolynomialMutation()).setMaxEvaluations(10000000).setPopulationSize(32).build();
                     probFunAlg.algorithm = algorithm;
                     exp.add(probFunAlg);
                 } catch (ClassCastException ifNotDouble) {
@@ -431,7 +446,6 @@ public class RunExp {
                 });
 
             }
-            
 
         }
         threads.shutdown();

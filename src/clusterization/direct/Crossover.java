@@ -12,6 +12,7 @@ import utils.RandomUtils;
 
 public class Crossover implements CrossoverOperator<DataSetSolution> {
 
+    private static final long serialVersionUID = 1L;
     final MetaFeaturesExtractor extractor;
 
     public Crossover(MetaFeaturesExtractor extractor) {
@@ -67,6 +68,16 @@ public class Crossover implements CrossoverOperator<DataSetSolution> {
         DataSetSolution offspringB = new DataSetSolution(new Dataset(newDataB, extractor));
 
         return Arrays.asList(offspringA, offspringB);
+    }
+
+    @Override
+    public int getNumberOfGeneratedChildren() {
+        return 2;
+    }
+
+    @Override
+    public int getNumberOfRequiredParents() {
+        return 2;
     }
 
 }

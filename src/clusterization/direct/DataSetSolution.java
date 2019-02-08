@@ -78,4 +78,9 @@ public class DataSetSolution implements Solution<Dataset> {
         return map.get(id);
     }
 
+    @Override
+    public double[] getObjectives() {
+        return new double[] { ef };
+    }
+
 }

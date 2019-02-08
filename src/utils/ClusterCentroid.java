@@ -1,6 +1,11 @@
 package utils;
 
-import weka.core.*;
+import weka.core.DenseInstance;
+import weka.core.DistanceFunction;
+import weka.core.EuclideanDistance;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.ManhattanDistance;
 
 /**
  * Created by Администратор on 20.08.2015.

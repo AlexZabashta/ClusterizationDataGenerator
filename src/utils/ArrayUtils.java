@@ -1,9 +1,6 @@
 package utils;
 
-import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Locale;
-import java.util.Random;
 
 public class ArrayUtils {
 

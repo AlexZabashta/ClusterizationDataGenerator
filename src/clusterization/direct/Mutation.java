@@ -12,7 +12,7 @@ import utils.ArrayUtils;
 import utils.RandomUtils;
 
 public class Mutation implements MutationOperator<DataSetSolution> {
-
+    private static final long serialVersionUID = 1L;
     final MetaFeaturesExtractor extractor;
     final long seed;
     final int minNumObjects, maxNumObjects;

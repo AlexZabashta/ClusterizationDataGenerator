@@ -1,7 +1,6 @@
 package clusterization;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import mfextraction.CacheMF;
-import mfextraction.Landmark;
 import mfextraction.MetaFeatureExtractor;
 import mfextraction.distances.KurtosisD;
 import mfextraction.distances.MDDistances615;
@@ -29,15 +27,12 @@ import mfextraction.landmark.KMCOP;
 import mfextraction.landmark.KMCS;
 import mfextraction.landmark.KMDunn;
 import mfextraction.landmark.KMOS;
-import mfextraction.landmark.KMSDbw;
 import mfextraction.landmark.KMSF;
 import mfextraction.landmark.KMSV;
 import mfextraction.landmark.KMSil;
 import mfextraction.statistical.MeanKurtosis;
 import mfextraction.statistical.MeanLinearCorrelationCoefficient;
 import mfextraction.statistical.MeanSkewness;
-import utils.ClusterCentroid;
-import weka.clusterers.SimpleKMeans;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;

@@ -16,7 +16,6 @@ import org.apache.commons.csv.CSVRecord;
 import clusterization.CMFExtractor;
 import clusterization.Dataset;
 import clusterization.MetaFeaturesExtractor;
-import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.filters.Filter;
