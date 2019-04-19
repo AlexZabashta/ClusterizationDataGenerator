@@ -30,7 +30,7 @@ public class Dataset {
     }
 
     public Dataset(double[][] data, MetaFeaturesExtractor extractor, boolean normalize) {
-        this.data = ArrayUtils.copy(data);
+        this.data = data = ArrayUtils.copy(data);
         this.numObjects = data.length;
 
         if (numObjects <= 0) {
